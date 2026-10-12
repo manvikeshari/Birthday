@@ -1,0 +1,1173 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Our Little Universe ♥</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --bg: #0b0714;
+  --pink: #ff6fae;
+  --lilac: #c4a1ff;
+  --gold: #ffd98b;
+  --muted: #c1b8d0;
+  --line: rgba(255,255,255,.13);
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; scroll-padding-top: 90px; }
+
+body {
+  font-family: "DM Sans", sans-serif;
+  color: #fff9ff;
+  background: var(--bg);
+  overflow-x: hidden;
+}
+
+body::before, body::after {
+  content: "";
+  position: fixed;
+  width: 440px;
+  height: 440px;
+  border-radius: 50%;
+  filter: blur(115px);
+  opacity: .22;
+  z-index: -2;
+  pointer-events: none;
+}
+
+body::before { background: #d73588; top: -180px; left: -170px; }
+body::after { background: #7651df; right: -180px; bottom: -180px; }
+
+a { color: inherit; }
+
+nav {
+  position: fixed;
+  inset: 0 0 auto;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 17px 7%;
+  background: rgba(11,7,20,.72);
+  backdrop-filter: blur(18px);
+  border-bottom: 1px solid rgba(255,255,255,.08);
+}
+
+.logo {
+  font-family: "Playfair Display", serif;
+  font-size: 1.35rem;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.logo span { color: var(--pink); }
+
+.nav-links {
+  list-style: none;
+  display: flex;
+  gap: 25px;
+}
+
+.nav-links a {
+  color: #ded6e8;
+  text-decoration: none;
+  font-size: .9rem;
+  transition: color .25s;
+}
+
+.nav-links a:hover { color: var(--pink); }
+
+.hero {
+  min-height: 100svh;
+  padding: 135px 7% 90px;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+}
+
+.hero-content {
+  max-width: 900px;
+  position: relative;
+  z-index: 2;
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  border: 1px solid var(--line);
+  border-radius: 99px;
+  background: rgba(255,255,255,.055);
+  color: #eee4f8;
+  padding: 9px 16px;
+  font-size: .82rem;
+  margin-bottom: 25px;
+}
+
+h1, h2, h3 {
+  font-family: "Playfair Display", serif;
+  font-weight: 600;
+}
+
+h1 {
+  font-size: clamp(3.4rem, 9vw, 7.6rem);
+  line-height: .98;
+  letter-spacing: -.045em;
+}
+
+.gradient {
+  background: linear-gradient(100deg, #ff7db5, #d0a5ff, #ffe2a2);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.hero p {
+  max-width: 670px;
+  margin: 26px auto 0;
+  color: var(--muted);
+  line-height: 1.9;
+  font-size: 1.04rem;
+}
+
+.hero-actions {
+  display: flex;
+  justify-content: center;
+  gap: 13px;
+  flex-wrap: wrap;
+  margin-top: 32px;
+}
+
+.btn {
+  border: 0;
+  border-radius: 99px;
+  padding: 13px 21px;
+  font: 600 .93rem "DM Sans", sans-serif;
+  cursor: pointer;
+  transition: transform .25s;
+  text-decoration: none;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+}
+
+.btn:hover { transform: translateY(-3px); }
+
+.btn-primary {
+  color: white;
+  background: linear-gradient(115deg, #f04e9a, #8f67e8);
+  box-shadow: 0 12px 35px #bb3c8735;
+}
+
+.btn-ghost {
+  color: white;
+  border: 1px solid var(--line);
+  background: rgba(255,255,255,.06);
+}
+
+.floaty {
+  position: absolute;
+  pointer-events: none;
+  opacity: .85;
+  animation: bob 6s ease-in-out infinite;
+}
+
+.balloon {
+  width: 62px;
+  height: 78px;
+  border-radius: 50% 50% 46% 46%;
+  box-shadow: inset -10px -12px 18px #0002,
+              inset 8px 8px 13px #fff5,
+              0 18px 30px #0003;
+}
+
+.balloon::after {
+  content: "";
+  position: absolute;
+  top: 76px;
+  left: 50%;
+  height: 100px;
+  border-left: 1px solid #ffffff5a;
+}
+
+.balloon.pink {
+  background: radial-gradient(circle at 30% 25%, #ffc7e1, #ff5caa 42%, #c52b77);
+  left: 8%;
+  top: 24%;
+}
+
+.balloon.lilac {
+  background: radial-gradient(circle at 30% 25%, #f1dcff, #a779f4 42%, #5d38bd);
+  right: 9%;
+  top: 25%;
+  animation-delay: -2s;
+}
+
+.balloon.gold {
+  background: radial-gradient(circle at 30% 25%, #fff3c8, #f8c95d 42%, #b77720);
+  right: 16%;
+  bottom: 13%;
+  animation-delay: -1s;
+}
+
+.balloon.blue {
+  background: radial-gradient(circle at 30% 25%, #d6edff, #6ba8ff 42%, #3754c5);
+  left: 14%;
+  bottom: 12%;
+  animation-delay: -3s;
+}
+
+.sparkle { color: var(--gold); font-size: 1.6rem; }
+
+@keyframes bob {
+  0%,100% { transform: translateY(0) rotate(-4deg); }
+  50% { transform: translateY(-22px) rotate(5deg); }
+}
+
+section { padding: 95px 7%; }
+
+.section-head {
+  text-align: center;
+  margin: 0 auto 48px;
+  max-width: 750px;
+}
+
+.section-head .kicker {
+  color: var(--pink);
+  text-transform: uppercase;
+  letter-spacing: .23em;
+  font-size: .76rem;
+  font-weight: 700;
+}
+
+.section-head h2 {
+  font-size: clamp(2.2rem, 5vw, 3.8rem);
+  margin-top: 10px;
+}
+
+.section-head p {
+  color: var(--muted);
+  line-height: 1.8;
+  margin-top: 13px;
+}
+
+.glass {
+  border: 1px solid var(--line);
+  border-radius: 27px;
+  background: linear-gradient(145deg, #ffffff12, #ffffff05);
+  backdrop-filter: blur(14px);
+  box-shadow: 0 18px 55px #0002;
+}
+
+.about-grid {
+  max-width: 1050px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: 1.1fr .9fr;
+  gap: 22px;
+}
+
+.about-copy { padding: 35px; }
+
+.about-copy h3 {
+  font-size: 1.8rem;
+  margin-bottom: 14px;
+}
+
+.about-copy p {
+  color: var(--muted);
+  line-height: 1.9;
+}
+
+.stats {
+  padding: 27px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+.stat {
+  padding: 20px 14px;
+  border-radius: 18px;
+  background: #ffffff09;
+  border: 1px solid #ffffff0d;
+  text-align: center;
+}
+
+.stat strong {
+  display: block;
+  font: 600 2rem "Playfair Display", serif;
+  color: var(--gold);
+}
+
+.stat span {
+  display: block;
+  margin-top: 6px;
+  color: var(--muted);
+  font-size: .84rem;
+}
+
+/* FRIENDSHIP TIMELINE */
+
+.timeline {
+  max-width: 850px;
+  margin: auto;
+  position: relative;
+}
+
+.timeline::before {
+  content: "";
+  position: absolute;
+  top: 12px;
+  bottom: 12px;
+  left: 50%;
+  width: 2px;
+  transform: translateX(-50%);
+  background: linear-gradient(var(--pink), var(--lilac), var(--gold));
+  opacity: .75;
+}
+
+.timeline-item {
+  width: 50%;
+  position: relative;
+  padding: 0 38px 35px 0;
+}
+
+.timeline-item:nth-child(even) {
+  margin-left: 50%;
+  padding: 0 0 35px 38px;
+}
+
+.timeline-item.chapter-five {
+  width: 65%;
+}
+
+.timeline-item::after {
+  content: "♥";
+  position: absolute;
+  top: 7px;
+  right: -13px;
+  width: 26px;
+  height: 26px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  background: #20142e;
+  color: var(--pink);
+  border: 1px solid #ff8fc4a0;
+  font-size: .75rem;
+  box-shadow: 0 0 0 6px #0b0714;
+}
+
+.timeline-item:nth-child(even)::after {
+  left: -13px;
+  right: auto;
+}
+
+.timeline-card {
+  padding: 24px;
+  transition: transform .25s, border-color .25s;
+}
+
+.timeline-card:hover {
+  transform: translateY(-5px);
+  border-color: #ff83ba7a;
+}
+
+.year {
+  color: var(--gold);
+  font-size: .78rem;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  font-weight: 700;
+}
+
+.timeline-card h3 {
+  font-size: 1.45rem;
+  margin: 8px 0;
+}
+
+.timeline-card p {
+  color: var(--muted);
+  line-height: 1.75;
+  font-size: .93rem;
+}
+
+.chapter-image {
+  width: 100%;
+  height: 340px;
+  display: block;
+  margin-top: 16px;
+  border-radius: 16px;
+  border: 1px solid rgba(255,255,255,.12);
+  box-shadow: 0 18px 35px rgba(0,0,0,.2);
+  object-fit: cover;
+  object-position: center;
+  background: rgba(255,255,255,.04);
+}
+
+.chapter-image-landscape {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 2 / 1;
+  margin-top: 16px;
+  overflow: hidden;
+  border-radius: 16px;
+  border: 1px solid rgba(255,255,255,.12);
+  box-shadow: 0 18px 35px rgba(0,0,0,.2);
+  background: rgba(255,255,255,.04);
+}
+
+.chapter-image-landscape img {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 50%;
+  height: 200%;
+  object-fit: cover;
+  object-position: center;
+  transform: translate(-50%, -50%) rotate(-90deg);
+}
+
+/* PHOTO GALLERY */
+
+.memory-grid {
+  max-width: 1100px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 19px;
+}
+
+.memory-card {
+  height: 330px;
+  padding: 11px;
+  overflow: hidden;
+  transition: transform .25s;
+}
+
+.memory-card:hover {
+  transform: translateY(-6px) rotate(.4deg);
+}
+
+.photo-placeholder {
+  height: 100%;
+  border-radius: 19px;
+  border: 1px dashed #ffffff45;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 18px;
+  background: radial-gradient(circle at 20% 10%, #ff6fae24, transparent 48%),
+              linear-gradient(145deg, #b58af51a, #ffffff05);
+}
+
+.memory-photo {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  object-position: center;
+  border-radius: 19px;
+  border: 1px solid rgba(255,255,255,.12);
+  background: rgba(255,255,255,.04);
+}
+
+.photo-placeholder .emoji {
+  font-size: 2.8rem;
+  margin-bottom: 13px;
+}
+
+.photo-placeholder strong {
+  font-family: "Playfair Display", serif;
+  font-size: 1.3rem;
+}
+
+.photo-placeholder span {
+  color: var(--muted);
+  font-size: .82rem;
+  margin-top: 8px;
+  line-height: 1.6;
+}
+
+/* DECORATED BIRTHDAY CAKE */
+
+.cake-stage {
+  min-height: 420px;
+  display: grid;
+  place-items: center;
+  position: relative;
+}
+
+.cake-wrap {
+  width: min(420px, 92vw);
+  height: 380px;
+  position: relative;
+  filter: drop-shadow(0 25px 25px #0005);
+}
+
+.cake-plate {
+  position: absolute;
+  width: 360px;
+  height: 48px;
+  bottom: 30px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 50%;
+  background: linear-gradient(#fff5ff, #d7bfdc 50%, #8b709b);
+  box-shadow: 0 14px 0 #5e426f, 0 23px 35px #0005;
+}
+
+.cake-base {
+  position: absolute;
+  width: 300px;
+  height: 125px;
+  bottom: 64px;
+  left: 50%;
+  transform: translateX(-50%);
+  border-radius: 0 0 35px 35px;
+  background: linear-gradient(90deg, #a63b67, #f18ab6 24%, #ffb6d4 52%, #df649b 80%, #96335f);
+  border-bottom: 9px solid #8e315b;
+}
+
+.cake-base::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: -27px;
+  height: 55px;
+  border-radius: 50%;
+  background: linear-gradient(180deg, #ffe7f2, #f6a5c9 70%, #d95b96);
+}
+
+.drip {
+  position: absolute;
+  top: 1px;
+  left: 10px;
+  right: 10px;
+  height: 43px;
+  z-index: 2;
+}
+
+.drip i {
+  position: absolute;
+  top: 0;
+  width: 30px;
+  height: 35px;
+  background: #fff0f7;
+  border-radius: 0 0 18px 18px;
+}
+
+.drip i:nth-child(1) { left: 10%; height: 32px; }
+.drip i:nth-child(2) { left: 29%; height: 43px; }
+.drip i:nth-child(3) { left: 51%; height: 28px; }
+.drip i:nth-child(4) { left: 73%; height: 39px; }
+
+.cake-topper {
+  position: absolute;
+  width: 235px;
+  height: 83px;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: 178px;
+  border-radius: 50%;
+  z-index: 3;
+  background: radial-gradient(ellipse at 40% 30%, #fff8fd, #ffd3e6 52%, #e66fa7);
+  border: 3px solid #ffeaf4;
+  box-shadow: inset 0 -7px 0 #e58ab7;
+}
+
+.cake-topper::before {
+  content: "";
+  position: absolute;
+  inset: 13px;
+  border: 2px dashed #e77caf;
+  border-radius: 50%;
+}
+
+.berry {
+  position: absolute;
+  z-index: 4;
+  width: 17px;
+  height: 17px;
+  border-radius: 50% 50% 45% 45%;
+  background: radial-gradient(circle at 30% 25%, #ffb7cb, #d92f68 75%);
+  box-shadow: inset -3px -3px 4px #8a1742;
+}
+
+.berry.b1 { left: 30%; top: 24px; }
+.berry.b2 { left: 47%; top: 12px; }
+.berry.b3 { left: 64%; top: 29px; }
+
+.cream-dot {
+  position: absolute;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background: #fff9fb;
+  box-shadow: 0 3px 0 #e8a2c1;
+  z-index: 4;
+}
+
+.cream-dot.d1 { left: 21%; top: 47px; }
+.cream-dot.d2 { left: 39%; top: 51px; }
+.cream-dot.d3 { left: 57%; top: 48px; }
+.cream-dot.d4 { left: 76%; top: 46px; }
+
+.candle {
+  position: absolute;
+  z-index: 5;
+  width: 13px;
+  height: 66px;
+  bottom: 238px;
+  border-radius: 5px 5px 2px 2px;
+  background: repeating-linear-gradient(135deg, #fff 0 7px, #b98af4 7px 13px);
+  box-shadow: inset -3px 0 3px #7b54a8;
+}
+
+.candle.c1 { left: 34%; }
+.candle.c2 { left: 49%; bottom: 248px; height: 74px; }
+.candle.c3 { left: 64%; }
+
+.flame {
+  position: absolute;
+  left: 50%;
+  top: -26px;
+  transform: translateX(-50%) rotate(45deg);
+  width: 17px;
+  height: 24px;
+  border-radius: 50% 50% 50% 10%;
+  background: radial-gradient(circle at 65% 65%, #fff7b5 0 15%, #ffc44f 35%, #ff6b37 75%);
+  box-shadow: 0 0 20px #ffb74d99;
+  animation: flicker .7s ease-in-out infinite alternate;
+}
+
+@keyframes flicker {
+  from { transform: translateX(-50%) rotate(40deg) scale(.95); }
+  to { transform: translateX(-50%) rotate(50deg) scale(1.1); }
+}
+
+.cake-caption {
+  text-align: center;
+  color: var(--muted);
+  margin-top: 4px;
+}
+
+.cake-caption strong { color: var(--pink); }
+
+/* BIRTHDAY LETTER */
+
+.message {
+  max-width: 900px;
+  margin: auto;
+  padding: clamp(28px, 5vw, 55px);
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.message::after {
+  content: "♥";
+  position: absolute;
+  font-size: 17rem;
+  color: #ff6fae08;
+  right: -20px;
+  bottom: -100px;
+  pointer-events: none;
+}
+
+.message h3 {
+  font-size: clamp(1.9rem, 4vw, 2.7rem);
+  margin-bottom: 20px;
+  position: relative;
+}
+
+.message p {
+  position: relative;
+  color: var(--muted);
+  line-height: 2;
+  font-size: 1rem;
+}
+
+/* INTERACTIVE GIFT */
+
+.surprise { text-align: center; }
+
+.gift {
+  width: 150px;
+  height: 140px;
+  margin: 38px auto 25px;
+  position: relative;
+  cursor: pointer;
+  animation: bob 3s ease-in-out infinite;
+}
+
+.gift-body {
+  position: absolute;
+  width: 140px;
+  height: 100px;
+  bottom: 0;
+  left: 5px;
+  border-radius: 10px;
+  background: linear-gradient(120deg, #f45da3, #8c62e7);
+  box-shadow: inset -10px -8px 20px #542c7c44;
+}
+
+.gift-body::after {
+  content: "";
+  position: absolute;
+  left: 58px;
+  top: 0;
+  width: 25px;
+  height: 100%;
+  background: #fff7;
+}
+
+.gift-lid {
+  position: absolute;
+  width: 158px;
+  height: 29px;
+  top: 12px;
+  left: -4px;
+  border-radius: 8px;
+  background: linear-gradient(120deg, #ffabd0, #c5a4ff);
+  z-index: 2;
+  transition: transform .5s;
+}
+
+.gift-bow {
+  position: absolute;
+  top: -15px;
+  left: 56px;
+  width: 40px;
+  height: 31px;
+  border: 9px solid #ffe3f1;
+  border-radius: 50% 50% 10% 50%;
+  transform: rotate(20deg);
+  z-index: 3;
+}
+
+.gift.open .gift-lid {
+  transform: translate(-22px, -62px) rotate(-15deg);
+}
+
+.surprise-message {
+  display: none;
+  max-width: 680px;
+  margin: 25px auto 0;
+  padding: 30px;
+}
+
+.surprise-message.show {
+  display: block;
+  animation: appear .6s ease both;
+}
+
+@keyframes appear {
+  from { opacity: 0; transform: translateY(15px) scale(.97); }
+  to { opacity: 1; transform: none; }
+}
+
+footer {
+  padding: 35px 20px 45px;
+  text-align: center;
+  border-top: 1px solid #ffffff10;
+  color: #a89bb8;
+  line-height: 1.9;
+}
+
+footer strong { color: var(--pink); }
+
+.confetti {
+  position: fixed;
+  top: -20px;
+  width: 9px;
+  height: 14px;
+  z-index: 99;
+  pointer-events: none;
+  animation: fall linear forwards;
+}
+
+@keyframes fall {
+  to { transform: translateY(110vh) rotate(760deg); opacity: .1; }
+}
+
+.heart-particle {
+  position: fixed;
+  z-index: 1;
+  pointer-events: none;
+  color: var(--pink);
+  animation: rise 6s linear forwards;
+}
+
+@keyframes rise {
+  from { transform: translateY(20px) scale(.6); opacity: 0; }
+  15% { opacity: .8; }
+  to { transform: translateY(-105vh) scale(1.3); opacity: 0; }
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 800px) {
+  nav { padding: 15px 5%; }
+  .nav-links { gap: 13px; }
+  .nav-links a { font-size: .78rem; }
+  .balloon { transform: scale(.7); }
+  .about-grid { grid-template-columns: 1fr; }
+  .memory-grid { grid-template-columns: 1fr; max-width: 460px; }
+  .memory-card { height: 290px; }
+}
+
+@media (max-width: 560px) {
+  .nav-links { gap: 10px; }
+  .nav-links li:nth-child(2),
+  .nav-links li:nth-child(4) { display: none; }
+  .hero { padding-inline: 5%; }
+  .hero p { font-size: .95rem; }
+  section { padding: 72px 5%; }
+  .timeline::before { left: 12px; }
+  .timeline-item,
+  .timeline-item:nth-child(even) {
+    width: 100%;
+    margin-left: 0;
+    padding: 0 0 25px 38px;
+  }
+  .timeline-item.chapter-five { width: 100%; }
+  .timeline-item::after,
+  .timeline-item:nth-child(even)::after {
+    left: 0;
+    right: auto;
+  }
+  .timeline-card { padding: 21px; }
+  .cake-wrap { transform: scale(.84); margin: -25px 0; }
+  .stats { padding: 17px; }
+  .about-copy { padding: 25px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    scroll-behavior: auto !important;
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+  }
+}
+</style>
+</head>
+
+<body>
+<nav>
+  <a class="logo" href="#home">Our Little <span>♥</span> Universe</a>
+  <ul class="nav-links">
+    <li><a href="#about">Us</a></li>
+    <li><a href="#timeline">Timeline</a></li>
+    <li><a href="#memories">Memories</a></li>
+    <li><a href="#cake">Cake</a></li>
+    <li><a href="#message">Letter</a></li>
+  </ul>
+</nav>
+
+<header class="hero" id="home">
+  <div class="floaty balloon pink"></div>
+  <div class="floaty balloon lilac"></div>
+  <div class="floaty balloon gold"></div>
+  <div class="floaty balloon blue"></div>
+
+  <div class="hero-content">
+    <div class="eyebrow">
+      <span class="sparkle">✦</span>
+      A little website for my favourite person
+      <span class="sparkle">✦</span>
+    </div>
+
+    <h1>Happy Birthday,<br><span class="gradient">My Person.</span></h1>
+
+    <p>
+      Some people become a part of your story. You somehow became a part of every chapter.
+      From school days and silly laughs to college life and big dreams — here’s to
+      <strong>us</strong>, and all the memories still waiting to happen. 💗
+    </p>
+
+    <div class="hero-actions">
+      <button class="btn btn-primary" onclick="celebrate()">🎉 Let’s celebrate</button>
+      <a class="btn btn-ghost" href="#timeline">♡ Our story</a>
+    </div>
+  </div>
+</header>
+
+<section id="about">
+  <div class="section-head">
+    <span class="kicker">A little about us</span>
+    <h2>Not just a friendship. <span class="gradient">A whole universe.</span></h2>
+    <p>We’ve grown up a little, changed a lot, and collected memories that only we will ever fully understand.</p>
+  </div>
+
+  <div class="about-grid">
+    <article class="glass about-copy">
+      <h3>From classroom buddies to college days ✨</h3>
+      <p>
+        It all started in Class 7. Back then, we had no idea that one school friendship
+        would travel with us through so many versions of ourselves. Now we’re in
+        B.Tech 3rd year, still making memories, still laughing at our own nonsense,
+        and still showing up for each other. The years keep moving, but this part
+        of our story stays special.
+      </p>
+    </article>
+
+    <div class="glass stats">
+      <div class="stat"><strong>Class 7</strong><span>Where it began</span></div>
+      <div class="stat"><strong>B.Tech 3rd</strong><span>Where we are now</span></div>
+      <div class="stat"><strong>∞</strong><span>Inside jokes</span></div>
+      <div class="stat"><strong>♥</strong><span>Always in my corner</span></div>
+    </div>
+  </div>
+</section>
+
+<section id="timeline">
+  <div class="section-head">
+    <span class="kicker">Our story, chapter by chapter</span>
+    <h2>The <span class="gradient">friendship timeline</span></h2>
+    <p>From school notebooks to college deadlines — look how far we’ve come.</p>
+  </div>
+
+  <div class="timeline">
+    <article class="timeline-item">
+      <div class="glass timeline-card">
+        <span class="year">Chapter 01 · Class 7</span>
+        <h3>The beginning 🌱</h3>
+        <p>Two school kids, the first conversations, the little laughs — and the start of a friendship we didn’t know would mean so much.</p>
+        <img class="chapter-image" src="images/class 7.png" alt="Class 7 memory" />
+      </div>
+    </article>
+
+    <article class="timeline-item">
+      <div class="glass timeline-card">
+        <span class="year">Chapter 02 · School days</span>
+        <h3>Our own little world 📚</h3>
+        <p>Shared stories, random jokes, memorable days, and the kind of moments that become your favourite memories without warning.</p>
+        <img class="chapter-image" src="images/schooldays.png" alt="School days memory" />
+      </div>
+    </article>
+
+    <article class="timeline-item">
+      <div class="glass timeline-card">
+        <span class="year">Chapter 03 · Growing up</span>
+        <h3>Different days, same bond 💌</h3>
+        <p>Life kept changing and we kept growing. Through new experiences and new versions of ourselves, our story kept finding its way forward.</p>
+        <img class="chapter-image" src="images/chapter3.png" alt="Growing up memory" />
+      </div>
+    </article>
+
+    <article class="timeline-item">
+      <div class="glass timeline-card">
+        <span class="year">Chapter 04 · B.Tech 3rd year</span>
+        <h3>Look at us now 🎓</h3>
+        <p>College, ambitions, busy schedules, and bigger dreams — but still the same friendship that began back in Class 7. And this is nowhere near the last chapter.</p>
+        <img class="chapter-image" src="images/chapter4.png" alt="B.Tech 3rd year memory" />
+      </div>
+    </article>
+
+    <article class="timeline-item chapter-five">
+      <div class="glass timeline-card">
+        <span class="year">Chapter 05 · The future</span>
+        <h3>More memories loading… ✨</h3>
+        <p>More places to go, more photos to take, more achievements to celebrate, and a thousand more stories to tell with “remember when…?”</p>
+        <div class="chapter-image-landscape">
+          <img src="images/chapter5.png" alt="Future memory" />
+        </div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<section id="memories">
+  <div class="section-head">
+    <span class="kicker">Our little gallery</span>
+    <h2>Moments worth <span class="gradient">keeping forever</span> 📸</h2>
+    <p>A few favourite moments, kept close forever.</p>
+  </div>
+
+  <div class="memory-grid">
+    <div class="glass memory-card">
+      <img class="memory-photo" src="images/image.png" alt="A sunny day together" />
+    </div>
+
+    <div class="glass memory-card">
+      <img class="memory-photo" src="images/image copy.png" alt="A sweet moment together" />
+    </div>
+
+    <div class="glass memory-card">
+      <img class="memory-photo" src="images/image copy 2.png" alt="A night out together" />
+    </div>
+  </div>
+</section>
+
+<section id="cake">
+  <div class="section-head">
+    <span class="kicker">Made with extra sweetness</span>
+    <h2>A cake as lovely as <span class="gradient">you</span> 🎂</h2>
+  </div>
+
+  <div class="cake-stage">
+    <div class="cake-wrap" role="img" aria-label="Decorated pink birthday cake with three lit candles">
+      <div class="cake-plate"></div>
+      <div class="cake-base">
+        <div class="drip"><i></i><i></i><i></i><i></i></div>
+      </div>
+
+      <div class="cake-topper">
+        <span class="berry b1"></span>
+        <span class="berry b2"></span>
+        <span class="berry b3"></span>
+        <span class="cream-dot d1"></span>
+        <span class="cream-dot d2"></span>
+        <span class="cream-dot d3"></span>
+        <span class="cream-dot d4"></span>
+      </div>
+
+      <div class="candle c1"><span class="flame"></span></div>
+      <div class="candle c2"><span class="flame"></span></div>
+      <div class="candle c3"><span class="flame"></span></div>
+    </div>
+  </div>
+
+  <p class="cake-caption">A little sugar, a lot of love, and <strong>one very special birthday.</strong></p>
+</section>
+
+<section id="message">
+  <div class="section-head">
+    <span class="kicker">A note from my heart</span>
+    <h2>A little letter <span class="gradient">for you</span> 💌</h2>
+  </div>
+
+  <article class="glass message">
+    <h3>To my favourite human, ❤️</h3>
+    <p>
+      Happy Birthday to the person who has been part of my life since Class 7 —
+      and somehow is still here, putting up with me in B.Tech 3rd year. 🥹💗
+      <br><br>
+      Thank you for the laughs, the random conversations, the ridiculous jokes,
+      the comfort, and all the little moments that have turned into a big part of my story.
+      <br><br>
+      I hope this year brings you peace when life feels loud, courage when things get
+      difficult, people who love you genuinely, and every little dream you’ve been
+      quietly wishing for.
+      <br><br>
+      No matter how busy life gets or how much we grow, I hope we always keep making
+      time for our friendship. We’ve come a long way from those school days — and I
+      can’t wait to see where the next chapters take us.
+      <br><br>
+      <strong class="gradient">Happy Birthday. Here’s to you, to us, and to all the memories still to come. 🫶✨</strong>
+    </p>
+  </article>
+</section>
+
+<section id="surprise">
+  <div class="section-head">
+    <span class="kicker">One last little thing</span>
+    <h2>A tiny <span class="gradient">surprise</span> 🎁</h2>
+    <p>Go on. Tap the gift.</p>
+  </div>
+
+  <div class="surprise">
+    <div class="gift" id="gift" role="button" tabindex="0" aria-label="Open birthday gift" onclick="openGift()">
+      <div class="gift-lid"></div>
+      <div class="gift-body"></div>
+      <div class="gift-bow"></div>
+    </div>
+
+    <div class="glass surprise-message" id="surpriseMessage">
+      <h3 style="font-size:2rem; margin-bottom:14px;">You are so, so loved. 💖</h3>
+      <p style="color:var(--muted);line-height:1.9;">
+        I hope you never forget how much joy you bring into the lives of the people
+        who know you. Keep dreaming big, laughing loudly, and being wonderfully you.
+        Happy Birthday, bestie! 🌷
+      </p>
+      <p style="margin-top:17px;color:var(--gold);">Forever grateful our story started in Class 7. ♥</p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  Made with <strong>♥</strong>, a little nostalgia, and lots of love.<br>
+  <strong>Happy Birthday, my person. ✨</strong>
+</footer>
+
+<script>
+function celebrate() {
+  makeConfetti(130);
+  makeHearts(22);
+  document.querySelector("#timeline").scrollIntoView({ behavior: "smooth" });
+}
+
+function makeConfetti(count = 90) {
+  const colors = ["#ff6fae", "#c4a1ff", "#ffd98b", "#ffffff", "#8fc8ff"];
+
+  for (let i = 0; i < count; i++) {
+    const piece = document.createElement("span");
+    piece.className = "confetti";
+    piece.style.left = Math.random() * 100 + "vw";
+    piece.style.background = colors[Math.floor(Math.random() * colors.length)];
+    piece.style.animationDuration = (2.5 + Math.random() * 3) + "s";
+    piece.style.animationDelay = Math.random() * .8 + "s";
+    piece.style.transform = `rotate(${Math.random() * 360}deg)`;
+
+    document.body.appendChild(piece);
+    setTimeout(() => piece.remove(), 6500);
+  }
+}
+
+function makeHearts(count = 12) {
+  for (let i = 0; i < count; i++) {
+    const heart = document.createElement("span");
+    heart.className = "heart-particle";
+    heart.textContent = Math.random() > .25 ? "♥" : "✦";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.bottom = "-30px";
+    heart.style.fontSize = (14 + Math.random() * 22) + "px";
+    heart.style.animationDuration = (4 + Math.random() * 4) + "s";
+
+    document.body.appendChild(heart);
+    setTimeout(() => heart.remove(), 8500);
+  }
+}
+
+function openGift() {
+  const gift = document.getElementById("gift");
+  const message = document.getElementById("surpriseMessage");
+
+  gift.classList.toggle("open");
+  message.classList.toggle("show");
+
+  if (message.classList.contains("show")) {
+    makeConfetti(75);
+  }
+}
+
+document.getElementById("gift").addEventListener("keydown", (event) => {
+  if (event.key === "Enter" || event.key === " ") {
+    event.preventDefault();
+    openGift();
+  }
+});
+
+window.addEventListener("load", () => {
+  setTimeout(() => makeConfetti(45), 600);
+});
+</script>
+</body>
+</html>
